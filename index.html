@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>7조</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="index.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body style="overflow-y: hidden; overflow-x: hidden">
+  <header>
+    <div id="boss">
+      <div class="boss-circle"></div>
+      <div class="boss-circle"></div>
+      <img src="./images/header/characters/lodumani.webp" id="boss-pic" />
+      <div id="boss-hp"></div>
+    </div>
+    <div id="vs-cover">
+      <img src="./images/header/vs.webp" id="vs" />
+    </div>
+    <div id="player">
+      <div class="player-circle"></div>
+      <div class="player-circle"></div>
+      <img src="./images/header/characters/dao.webp" id="player-pic" />
+      <div id="player-hp"></div>
+    </div>
+  </header>
+  <div id="header-nav"></div>
+  <section>
+    <canvas id="myCanvas" width="1600" height="900"></canvas>
+  </section>
+  <img src="" id="field" />
+  <div id="boss-block">
+    <img src="./images/header/characters/boss1.png"/>
+  </div>
+  <div id="container">
+    <div id="debuff">
+      <p id="debuff-top">Debuffs</p>
+      <div class="buffs">
+        <img src="./images/buffs/slowbar.png" />
+        <p>바 속도 Down</p>
+      </div>
+      <div class="buffs">
+        <img src="./images/buffs/smallbar.png" />
+        <p>바 크기 Down</p>
+      </div>
+      <div class="buffs">
+        <img src="./images/buffs/reverse.png" />
+        <p>Reverse</p>
+      </div>
+      <div class="buffs">
+        <img src="./images/buffs/fasterball.png" />
+        <p>공 속도 UP</p>
+      </div>
+    </div>
+    <div id="buff">
+      <p id="buff-top">Buffs</p>
+      <div class="buffs">
+        <img src="./images/buffs/moreballs.png" />
+        <p>공 개수 UP</p>
+      </div>
+      <div class="buffs">
+        <img src="./images/buffs/widerbar.png" />
+        <p>바 크기 UP</p>
+      </div>
+      <div class="buffs">
+        <img src="./images/buffs/strongerballs.png" />
+        <p>공 데미지 UP</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
