@@ -20,10 +20,10 @@ $(document).ready(() => {
 
   const speed = 6; //speed;
   var angle = 45;
-  var dx = speed;
+  var dx = Math.random() < 0.5 ? -1*speed : speed;
   var dy = speed;
   var y = 500;
-  var x = 800;
+  var x = Math.floor(Math.random() * (1300 - 500 + 1)) + 500;
 
   var wallDown = 1;
   var wallCount = 0;
