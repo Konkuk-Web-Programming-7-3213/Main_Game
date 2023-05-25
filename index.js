@@ -195,9 +195,16 @@ $(document).ready(() => {
       //dy = -dy;
       dy = -speed * Math.sin((angle * Math.PI) / 180);
     } else if (y + dy > canvas.height - ballRadious) {
-      if (x > paddleX && x < paddleX + paddleWidth) {
-        //dy = -dy;
-        dy = -speed * Math.sin((angle * Math.PI) / 180);
+      if (x > paddleX && x < paddleX + paddleWidth && y + ballRadious >= canvas.height - paddleHeight) {
+
+        var distance = x - (paddleX + paddleWidth / 2);
+      
+        var maxReflectionAngle = 60;
+      
+        var reflectionAngle = (distance / (paddleWidth / 2)) * (Math.PI / 180) * maxReflectionAngle;
+
+        dx = speed * Math.sin(reflectionAngle);
+        dy = -speed * Math.cos(reflectionAngle);
       } else {
         // alert("GAME OVER");
         // document.location.reload();
