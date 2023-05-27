@@ -76,6 +76,8 @@ $(document).ready(() => {
     atkDmg = 1;
     maxBossHp = 5;
     bossHp = 5;
+    maxPlayerHp = 5;
+    playerHp = 5;
   }
 
   document.addEventListener("keydown", keyDownHandler, false);
