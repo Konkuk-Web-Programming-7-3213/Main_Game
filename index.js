@@ -37,6 +37,8 @@ $(document).ready(() => {
   var miniBoss = 0;
   var maxBossHp = 5;
   var bossHp = 5;
+  var maxPlayerHp = 5;
+  var playerHp = 5;
 
   var map = []
   const level1 = [
@@ -208,7 +210,15 @@ $(document).ready(() => {
       } else {
         // alert("GAME OVER");
         // document.location.reload();
-        clearInterval(ball); // Needed for Chrome to end game
+        //clearInterval(ball); // Needed for Chrome to end game
+        playerHp--;
+        $("#player-hp").css("width", (746 / maxPlayerHp * playerHp) + "px");
+        y = 500;
+        x = Math.floor(Math.random() * (1300 - 500 + 1)) + 500;
+        if (playerHp <= 0) {
+          clearInterval(ball);
+          console.log("you lost!");
+        }
       }
     }
 
