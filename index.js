@@ -396,52 +396,54 @@ $(document).ready(() => {
 
     // Defuff 구현
     if (chapter == 1) {
-      if (bossHp <= (maxBossHp / 2) && !slowDebuff) {
-        slowDebuff = true;
-        $("#debuffaa").css("opacity", "1");
-      }
-    }
-    if(chapter == 2) {
-      if (bossHp <= (maxBossHp / 3 * 2) && !slowDebuff) {
-        slowDebuff = true;
-        $("#debuffaa").css("opacity", "1");
-      }
-      if (bossHp <= (maxBossHp / 3) && !barDebuff) {
-        barDebuff = true;
-        paddleWidth = paddleWidth * 0.7;
-        $("#debuffbb").css("opacity", "1");
-      }
-    }
-    if(chapter == 3) {
-      if (bossHp <= (maxBossHp / 4 * 3) && !slowDebuff) {
-        slowDebuff = true;
-        $("#debuffaa").css("opacity", "1");
-      }
       if (bossHp <= (maxBossHp / 2) && !barDebuff) {
         barDebuff = true;
         paddleWidth = paddleWidth * 0.7;
         $("#debuffbb").css("opacity", "1");
       }
-      if (bossHp <= (maxBossHp / 4) && !fastDebuff) {
+    }
+    if(chapter == 2) {
+      if (bossHp <= (maxBossHp / 3 * 2) && !barDebuff) {
+        barDebuff = true;
+        paddleWidth = paddleWidth * 0.7;
+        $("#debuffbb").css("opacity", "1");
+      }
+      if (bossHp <= (maxBossHp / 3) && !fastDebuff) {
         fastDebuff = true;
         speed = 7;
         $("#debuffcc").css("opacity", "1");
       }
     }
-    if(chapter == 4) {
-      if (bossHp <= (maxBossHp / 5 * 4) && !slowDebuff) {
-        slowDebuff = true;
-        $("#debuffaa").css("opacity", "1");
-      }
-      if (bossHp <= (maxBossHp / 5 * 3) && !barDebuff) {
+    if(chapter == 3) {
+      if (bossHp <= (maxBossHp / 4 * 3) && !barDebuff) {
         barDebuff = true;
         paddleWidth = paddleWidth * 0.7;
         $("#debuffbb").css("opacity", "1");
       }
-      if (bossHp <= (maxBossHp / 5 * 2) && !fastDebuff) {
+      if (bossHp <= (maxBossHp / 2) && !fastDebuff) {
         fastDebuff = true;
         speed = 7;
         $("#debuffcc").css("opacity", "1");
+      }
+      if (bossHp <= (maxBossHp / 4 * 1) && !slowDebuff) {
+        slowDebuff = true;
+        $("#debuffaa").css("opacity", "1");
+      }
+    }
+    if(chapter == 4) {
+      if (bossHp <= (maxBossHp / 5 * 4) && !barDebuff) {
+        barDebuff = true;
+        paddleWidth = paddleWidth * 0.7;
+        $("#debuffbb").css("opacity", "1");
+      }
+      if (bossHp <= (maxBossHp / 5 * 3) && !fastDebuff) {
+        fastDebuff = true;
+        speed = 7;
+        $("#debuffcc").css("opacity", "1");
+      }
+      if (bossHp <= (maxBossHp / 5 * 2) && !slowDebuff) {
+        slowDebuff = true;
+        $("#debuffaa").css("opacity", "1");
       }
       if (bossHp <= (maxBossHp / 5 * 1) && !reverse) {
         reverse = true;
@@ -557,7 +559,7 @@ $(document).ready(() => {
     $("#again").css("display", "block");
     $("#player-hp").css("width", (746) + "px");
     $("#boss-hp").css("width", (746) + "px");
-    $("#boss-pic").attr("src", "./images/header/characters/lodumani.webp");
+    $("#boss-block img").attr("src", "./images/header/characters/boss1.png");
     $("#display-menu").show();
     $("#main_menu").show();
   });
@@ -571,7 +573,7 @@ $(document).ready(() => {
     $("#again").css("display", "block");
     $("#player-hp").css("width", (746) + "px");
     $("#boss-hp").css("width", (746) + "px");
-    $("#boss-pic").attr("src", "./images/header/characters/lodumani.webp");
+    $("#boss-block img").attr("src", "./images/header/characters/boss1.png");
     GameBuff();
   })
 
@@ -584,7 +586,7 @@ $(document).ready(() => {
     $("#again").css("display", "block");
     $("#player-hp").css("width", (746) + "px");
     $("#boss-hp").css("width", (746) + "px");
-    $("#boss-pic").attr("src", "./images/header/characters/lodumani.webp");
+    $("#boss-block img").attr("src", "./images/header/characters/boss1.png");
     chapter++;
     toggleChapter(chapter);
   })
@@ -1764,7 +1766,10 @@ $(document).ready(() => {
       document.getElementById("Bazzi_icon5").style.display = 'none';
       enableMenuButtons();
       
-        GameBuff();
+      $("#display-main").hide();
+      $("#gameOver").hide();
+      $("#clear").hide();
+      $("#credit").hide();
     });
     $("#next-button5").off("click");
   
@@ -1816,6 +1821,10 @@ $(document).ready(() => {
   
               document.querySelector("#chapter5").style.display = "none";
               enableMenuButtons();
+              $("#display-main").hide();
+              $("#gameOver").hide();
+              $("#clear").hide();
+              $("#credit").hide();
             });
           });
         }
@@ -1828,8 +1837,13 @@ $(document).ready(() => {
       } else {
         document.querySelector("#chapter5").style.display = "none";
         enableMenuButtons();
-        $("#display-menu").show();
-        $("#main_menu").show();
+        $("#display-main").hide();
+        $("#gameOver").hide();
+        $("#clear").hide();
+        $("#display-main").hide();
+        $("#gameOver").hide();
+        $("#clear").hide();
+        $("#credit").hide();
         return 1;
       }
     });
