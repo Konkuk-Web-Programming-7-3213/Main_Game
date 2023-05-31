@@ -147,7 +147,7 @@ $(document).ready(() => {
     balls = [
       {
           x : Math.floor(Math.random() * (1300 - 500 + 1)) + 500,
-          y: canvas.height /2  + 200,
+          y: canvas.height /2  + 250,
           dx : Math.random() < 0.5 ? -1 * speed : speed,
           dy : -speed
       }
@@ -1241,177 +1241,171 @@ $(document).ready(() => {
     });
   }
   
-  var ntright;
-  function NotTalkingRight(id) {
-    var next = document.getElementById("next-button");
-    next.disabled = true;
-    var next2 = document.getElementById("next-button2");
-    next2.disabled = true;
-    var next3 = document.getElementById("next-button3");
-    next3.disabled = true;
-    var nextb = document.getElementById("next-buttonb");
-    nextb.disabled = true;
-    var next5 = document.getElementById("next-button5");
-    next5.disabled = true;
-    var nextb5 = document.getElementById("next-buttonb5");
-    nextb5.disabled = true;
-    var elem = document.getElementById(id);
-    var top = 0;
-    var left = -700;
-    var height = 70;
-    elem.style.filter = "grayscale(100)";
-    ntright = setInterval(function colorMove() {
-      height -= 0.07148;
-      top += 1;
-      left += 1;
-      // if(top>=280 && left<=-500)
-      //   clearInterval(id2);
-      elem.style.top = top + "px";
-      elem.style.left = left + "px";
-      elem.style.height = height + "%";
-  
-      if (elem.style.top === "280px") {
-        clearInterval(ntright);
-        elem.style.display = "none";
-        next.disabled = false;
-        next2.disabled = false;
-        next3.disabled = false;
-        nextb.disabled = false;
-        next5.disabled = false;
-        nextb5.disabled = false;
-      }
-    }, 1);
-  }
-  
+  function disableButtons(){
+            var next = document.getElementById('next-button');
+            next.disabled = true;
+            var next2 = document.getElementById('next-button2');
+            next2.disabled = true;
+            var next3 = document.getElementById('next-button3');
+            next3.disabled = true;
+            var nextb = document.getElementById('next-buttonb');
+            nextb.disabled = true;
+            var next5 = document.getElementById('next-button5');
+            next5.disabled = true;
+            var nextb5 = document.getElementById('next-buttonb5');
+            nextb5.disabled = true;
+            var skip = document.getElementById('skip-button');
+            skip.disabled = true;
+            var skip2 = document.getElementById('skip-button2');
+            skip2.disabled = true;
+            var skip3 = document.getElementById('skip-button3');
+            skip3.disabled = true;
+            var skip5 = document.getElementById('skip-button5');
+            skip5.disabled = true;
+ }
+
+ function enableButtons(){
+            var next = document.getElementById('next-button');
+            next.disabled = false;
+            var next2 = document.getElementById('next-button2');
+            next2.disabled = false;
+            var next3 = document.getElementById('next-button3');
+            next3.disabled = false;
+            var nextb = document.getElementById('next-buttonb');
+            nextb.disabled = false;
+            var next5 = document.getElementById('next-button5');
+            next5.disabled = false;
+            var nextb5 = document.getElementById('next-buttonb5');
+            nextb5.disabled = false;
+            var skip = document.getElementById('skip-button');
+            skip.disabled = false;
+            var skip2 = document.getElementById('skip-button2');
+            skip2.disabled = false;
+            var skip3 = document.getElementById('skip-button3');
+            skip3.disabled = false;
+            var skip5 = document.getElementById('skip-button5');
+            skip5.disabled = false;
+ }
+ var ntright;
+          function NotTalkingRight(id){
+            disableButtons();
+            var elem = document.getElementById(id);
+            var top= 0;
+            var left= -700;
+             var height = 70;
+            elem.style.filter='grayscale(100)';
+            ntright = setInterval(function colorMove(){
+              height-=0.07148;
+              top+= 1;
+              left+=1;
+              // if(top>=280 && left<=-500)
+              //   clearInterval(id2);
+              elem.style.top = top + 'px';
+              elem.style.left = left +'px';
+              elem.style.height = height+'%';
+
+            if(elem.style.top === '280px'){
+              clearInterval(ntright);
+              elem.style.display = 'none';
+              enableButtons();
+            }
+
+            },1)
+
+
+          }
+
   var ntleft;
-  
-  function NotTalkingLeft(id) {
-    var next = document.getElementById("next-button");
-    next.disabled = true;
-    var next2 = document.getElementById("next-button2");
-    next2.disabled = true;
-    var next3 = document.getElementById("next-button3");
-    next3.disabled = true;
-    var nextb = document.getElementById("next-buttonb");
-    nextb.disabled = true;
-    var next5 = document.getElementById("next-button5");
-    next5.disabled = true;
-    var nextb5 = document.getElementById("next-buttonb5");
-    nextb5.disabled = true;
-    var elem = document.getElementById(id);
-    var top = 0;
-    var left = 280;
-    var height = 70;
-  
-    elem.style.filter = "grayscale(100)";
-    ntleft = setInterval(function colorMove() {
-      height -= 0.07148;
-      top += 1;
-      left -= 1;
-      elem.style.height = height + "%";
-      elem.style.top = top + "px";
-      elem.style.left = left + "px";
-  
-      if (elem.style.top === "280px") {
-        clearInterval(ntleft);
-        elem.style.display = "none";
-        next.disabled = false;
-        next2.disabled = false;
-        next3.disabled = false;
-        nextb.disabled = false;
-        next5.disabled = false;
-        nextb5.disabled = false;
-      }
-    }, 1);
-  }
-  
-  var tleft;
-  function TalkingLeft(id) {
-    var next = document.getElementById("next-button");
-    next.disabled = true;
-    var next2 = document.getElementById("next-button2");
-    next2.disabled = true;
-    var next3 = document.getElementById("next-button3");
-    next3.disabled = true;
-    var nextb = document.getElementById("next-buttonb");
-    nextb.disabled = true;
-    var next5 = document.getElementById("next-button5");
-    next5.disabled = true;
-    var nextb5 = document.getElementById("next-buttonb5");
-    nextb5.disabled = true;
-    var top = 280;
-    var left = 0;
-    var height = 50;
-    var elem = document.getElementById(id);
-    elem.style.display = "block";
-    elem.style.filter = "none";
-    tleft = setInterval(function colorMove() {
-      height += 0.07148;
-      top -= 1;
-      left += 1;
-      // if(top>=280 && left<=-500)
-      //   clearInterval(id2);
-      var elem = document.getElementById(id);
-      elem.style.top = top + "px";
-      elem.style.left = left + "px";
-  
-      elem.style.height = height + "%";
-  
-      if (elem.style.top === "0px") {
-        clearInterval(tleft);
-        next.disabled = false;
-        next2.disabled = false;
-        next3.disabled = false;
-        nextb.disabled = false;
-        next5.disabled = false;
-        nextb5.disabled = false;
-      }
-    }, 1);
-  }
-  
-  var tright;
-  function TalkingRight(id) {
-    var next = document.getElementById("next-button");
-    next.disabled = true;
-    var next2 = document.getElementById("next-button2");
-    next2.disabled = true;
-    var next3 = document.getElementById("next-button3");
-    next3.disabled = true;
-    var nextb = document.getElementById("next-buttonb");
-    nextb.disabled = true;
-    var next5 = document.getElementById("next-button5");
-    next5.disabled = true;
-    var nextb5 = document.getElementById("next-buttonb5");
-    nextb5.disabled = true;
-    var top = 280;
-    var left = -420;
-    var height = 50;
-    var elem = document.getElementById(id);
-    elem.style.display = "block";
-    elem.style.filter = "none";
-    tright = setInterval(function colorMove() {
-      height += 0.07148;
-      top -= 1;
-      left -= 1;
-      // if(top>=280 && left<=-500)
-      //   clearInterval(id2);
-      var elem = document.getElementById(id);
-      elem.style.top = top + "px";
-      elem.style.left = left + "px";
-  
-      elem.style.height = height + "%";
-  
-      if (elem.style.top === "0px") {
-        clearInterval(tright);
-        next.disabled = false;
-        next2.disabled = false;
-        next3.disabled = false;
-        nextb.disabled = false;
-        next5.disabled = false;
-        nextb5.disabled = false;
-      }
-    }, 1);
-  }
+
+          function NotTalkingLeft(id){
+            disableButtons();
+            var elem = document.getElementById(id);
+            var top= 0;
+            var left= 280;
+            var height = 70;
+             
+            elem.style.filter='grayscale(100)';
+            ntleft = setInterval(function colorMove(){
+
+              height-=0.07148;
+              top+= 1;
+              left-=1;
+              elem.style.height = height+'%';
+              elem.style.top = top + 'px';
+              elem.style.left = left +'px';
+
+            if(elem.style.top === '280px'){
+              clearInterval(ntleft);
+              elem.style.display = 'none';
+              enableButtons();
+            }
+
+
+            },1)
+
+          }
+
+    var tleft;
+          function TalkingLeft(id){
+            disableButtons();
+            var top= 280;
+            var left= 0;
+            var height = 50;
+            var elem = document.getElementById(id);
+            elem.style.display = 'block';
+            elem.style.filter='none';
+            tleft = setInterval(function colorMove(){
+              height+=0.07148;
+              top-= 1;
+              left+=1;
+              // if(top>=280 && left<=-500)
+              //   clearInterval(id2);
+            var elem = document.getElementById(id);
+              elem.style.top = top + 'px';
+              elem.style.left = left +'px';
+
+            elem.style.height= height+'%';
+
+            if(elem.style.top === '0px'){
+              clearInterval(tleft);
+              enableButtons();
+            }
+
+            },1)
+
+
+          }
+
+    var tright;
+          function TalkingRight(id){
+            disableButtons();
+            var top= 280;
+            var left= -420;
+            var height = 50;
+            var elem = document.getElementById(id);
+            elem.style.display = 'block';
+            elem.style.filter='none';
+            tright = setInterval(function colorMove(){
+              height+=0.07148;
+              top-= 1;
+              left-=1;
+              // if(top>=280 && left<=-500)
+              //   clearInterval(id2);
+            var elem = document.getElementById(id);
+              elem.style.top = top + 'px';
+              elem.style.left = left +'px';
+
+            elem.style.height= height+'%';
+
+            if(elem.style.top === '0px'){
+              clearInterval(tright);
+              enableButtons();
+            }
+
+            },1)
+
+
+          }
   
   var i = 0,
     text;
@@ -1436,17 +1430,27 @@ $(document).ready(() => {
     document.body.style.backgroundImage = "url('./images/story/ch1.jpg')";
     (i = 0), (k = 0);
     text = "로두마니: ㅎㅎㅎ 이제 나는 부자가 될 수 있어";
-    console.log("run");
     disableMenuButtons();
     $("#dialogue-text").empty();
   
     typing();
     TalkingRight("Lodumani_icon");
+    $('#skip-button').off('click');
+
+// Add a new event listener
+    $('#skip-button').on('click', function() {
+      document.querySelector("#chapter1").style.display = 'none';
+      document.getElementById("Dao_icon").style.display = 'none';
+      document.getElementById("Lodumani_icon").style.display = 'none';
+      document.getElementById("Buha_icon").style.display = 'none';
+      enableMenuButtons();
+
+        GameBuff();
+    });
     $("#next-button").off("click");
   
     // Add a new event listener
     $("#next-button").on("click", function () {
-      console.log("next sekali");
       if (k < textarray.length) {
         if (k == 0) {
           NotTalkingRight("Lodumani_icon");
@@ -1502,6 +1506,21 @@ $(document).ready(() => {
     }
     typing2();
     TalkingRight("Buha_icon2");
+    $('#skip-button2').off('click');
+
+// Add a new event listener
+    $('#skip-button2').on('click', function() {
+      document.querySelector("#chapter2").style.display = 'none';
+      document.getElementById("Dao_icon2").style.display = 'none';
+      document.getElementById("Buha_icon2").style.display = 'none';
+      document.getElementById("Diz_icon2").style.display = 'none';
+      document.getElementById("Bazzi_icon2").style.display = 'none';
+      document.getElementById("Bazzi_icon22").style.display = 'none';
+      document.getElementById("Mobi_icon2").style.display = 'none';
+      enableMenuButtons();
+
+        GameBuff();
+    });
     $("#next-button2").off("click");
   
     // Add a new event listener
@@ -1573,6 +1592,19 @@ $(document).ready(() => {
     }
     typing3();
     TalkingRight("Mobi_icon3");
+     $('#skip-button3').off('click');
+
+// Add a new event listener
+    $('#skip-button3').on('click', function() {
+      document.querySelector("#chapter3").style.display = 'none';
+      document.getElementById("Dao_icon3").style.display = 'none';
+      document.getElementById("Diz_icon3").style.display = 'none';
+      document.getElementById("Bazzi_icon3").style.display = 'none';
+      document.getElementById("Mobi_icon3").style.display = 'none';
+      enableMenuButtons();
+
+        GameBuff();
+    });
     $("#next-button3").off("click");
   
     // Add a new event listener
@@ -1721,6 +1753,19 @@ $(document).ready(() => {
     }
     typing5();
     TalkingRight("Lodumani_icon5");
+    $('#skip-button5').off('click');
+
+// Add a new event listener
+    $('#skip-button5').on('click', function() {
+      document.querySelector("#chapter5").style.display = 'none';
+      document.getElementById("Dao_icon5").style.display = 'none';
+      document.getElementById("Lodumani_icon5").style.display = 'none';
+      document.getElementById("Diz_icon5").style.display = 'none';
+      document.getElementById("Bazzi_icon5").style.display = 'none';
+      enableMenuButtons();
+      
+        GameBuff();
+    });
     $("#next-button5").off("click");
   
     // Add a new event listener
@@ -1783,6 +1828,8 @@ $(document).ready(() => {
       } else {
         document.querySelector("#chapter5").style.display = "none";
         enableMenuButtons();
+        $("#display-menu").show();
+        $("#main_menu").show();
         return 1;
       }
     });

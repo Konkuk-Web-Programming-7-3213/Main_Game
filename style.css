@@ -611,17 +611,97 @@ story css
   margin: 50px 50px;
   padding: 80px 50px;
 }
+
 #next-button {
   position: absolute;
   bottom: 50px;
-  right: 150px;
+  right: 220px;
   padding: 8px 16px;
-  background-color: white;
-  color: black;
+  background-color: #333;
+  color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
+#next-button2 {
+  position: absolute;
+  bottom: 50px;
+  right: 220px;
+  padding: 8px 16px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+#next-button3 {
+  position: absolute;
+  bottom: 50px;
+  right: 220px;
+  padding: 8px 16px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+#next-button5 {
+  position: absolute;
+  bottom: 50px;
+  right: 220px;
+  padding: 8px 16px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#skip-button {
+  position: absolute;
+  bottom: 50px;
+  right: 150px;
+  padding: 8px 16px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+#skip-button2 {
+  position: absolute;
+  bottom: 50px;
+  right: 150px;
+  padding: 8px 16px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+#skip-button3 {
+  position: absolute;
+  bottom: 50px;
+  right: 150px;
+  padding: 8px 16px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+#skip-button5 {
+  position: absolute;
+  bottom: 50px;
+  right: 150px;
+  padding: 8px 16px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 .bla
 #next-buttonb {
   position: absolute;
@@ -939,18 +1019,6 @@ story css
   line-height: 1.5;
   margin: 0;
   padding: 10px;
-}
-
-.next-button {
-  position: absolute;
-  bottom: 50px;
-  right: 150px;
-  padding: 8px 16px;
-  background-color: #333;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
 }
 
 /*
