@@ -414,54 +414,53 @@ $(document).ready(() => {
       regenCount = false;
     }
 
-    for(var i = 0; i < balls.length; i++) {
-      if (balls[i].x + balls[i].dx > canvas.width - ballRadious || balls[i].x + balls[i].dx < ballRadious) {
-        //dx = -dx;
-        balls[i].dx = -speed * Math.cos((angle * Math.PI) / 180);
-      }
-      if (balls[i].y + balls[i].dy < ballRadious) {
-        //dy = -dy;
-        balls[i].dy = -speed * Math.sin((angle * Math.PI) / 180);
-      } else if (balls[i].y + balls[i].dy > canvas.height - ballRadious) {
-        if (
-          balls[i].x > paddleX &&
-          balls[i].x < paddleX + paddleWidth &&
-          balls[i].y + ballRadious >= canvas.height - paddleHeight
-        ) {
-          var distance = balls[i].x - (paddleX + paddleWidth / 2);
-  
-          var maxReflectionAngle = 60;
-  
-          var reflectionAngle =
-            (distance / (paddleWidth / 2)) * (Math.PI / 180) * maxReflectionAngle;
-  
-          balls[i].dx = speed * Math.sin(reflectionAngle);
-          balls[i].dy = -speed * Math.cos(reflectionAngle);
-        } else {
-          // alert("GAME OVER");
-          // document.location.reload();
-          //clearInterval(ball); // Needed for Chrome to end game
-          playerHp--;
-          $("#player-hp").css("width", (746 / maxPlayerHp) * playerHp + "px");
-          if (balls.length > 1) {
-            balls.splice(i, 1);
-            if(i == 1){
-              i--;
-            }
-          } else{
-            balls[i].y = 500;
-            balls[i].x = Math.floor(Math.random() * (1300 - 500 + 1)) + 500;
+    for(var i = 0; i < balls.length; i++){
+      if (balls[i].x + balls[i].dx > canvas.width - ballRadious) {
+          balls[i].x = canvas.width - ballRadious; // 공을 벽 안으로 이동시킴
+          balls[i].dx = -Math.abs(speed * Math.cos(angle * Math.PI / 180)); // 방향을 반대로 변경하고 절대값으로 만듦
+      } else if (balls[i].x + balls[i].dx < ballRadious) {
+          balls[i].x = ballRadious; // 공을 벽 안으로 이동시킴
+          balls[i].dx = Math.abs(speed * Math.cos(angle * Math.PI / 180)); // 방향을 반대로 변경하고 절대값으로 만듦
+      } else if (balls[i].y + balls[i].dy > canvas.height - ballRadious - paddleHeight) {
+          if (balls[i].x > paddleX - ballRadious && balls[i].x < paddleX + paddleWidth + ballRadious) {
+              if (balls[i].dy > 0) { // 공이 아래 방향에서 패들과 충돌했을 때만 방향을 반대로 변경
+                  balls[i].dy = -Math.abs(speed * Math.sin(angle * Math.PI / 180)); // 방향을 반대로 변경하고 절대값으로 만듦
+              }
+          } else {
+              // alert("GAME OVER");
+              // document.location.reload();
+              // clearInterval(ball); // Needed for Chrome to end game
+            // alert("GAME OVER");
+        // document.location.reload();
+        //clearInterval(ball); // Needed for Chrome to end game
+        playerHp--;
+        $("#player-hp").css("width", (746 / maxPlayerHp) * playerHp + "px");
+        if (balls.length > 1) {
+          balls.splice(i, 1);
+          if(i == 1){
+            i--;
           }
-          if (playerHp <= 0) {
-            clearInterval(ball);
-            $(".scoreView").text(totalScore);
-            $("#gameOver").show();
-          }
+        } else{
+          balls[i].y = 500;
+          balls[i].x = Math.floor(Math.random() * (1300 - 500 + 1)) + 500;
+
         }
+        if (playerHp <= 0) {
+          clearInterval(ball);
+          $(".scoreView").text(totalScore);
+          $("#gameOver").show();
+        }
+          }
+      } else if (balls[i].y + balls[i].dy < ballRadious) {
+          balls[i].y = ballRadious; // 천장과 충돌 시 공을 벽 안으로 이동시킴
+          balls[i].dy = Math.abs(speed * Math.sin(angle * Math.PI / 180)); // 방향을 반대로 변경하고 절대값으로 만듦
+      } else {
+        
       }
-      balls[i].x += balls[i].dx;
-      balls[i].y += balls[i].dy;
-    }
+    
+    balls[i].x += balls[i].dx;
+    balls[i].y += balls[i].dy;
+  }
     if (rightPressed && paddleX < canvas.width - paddleWidth) {
       paddleX += paddleXbyKey;
     } else if (leftPressed && paddleX > 0) {
