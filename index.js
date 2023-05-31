@@ -9,7 +9,7 @@ var isBallsAdded = false;
 var isBarWider = false;
 const ballRadious = 10;
 
-const speed = 6; //speed;
+var speed = 5; //speed;
 var angle = 45;
 var dx = Math.random() < 0.5 ? -1 * speed : speed;
 var dy = speed;
@@ -34,7 +34,10 @@ var maxPlayerHp = 5;
 var playerHp = 5;
 var chapter = 1; //챕터 선택 변수, 1로 초기화, 챕터 선택 없이 게임 시작을 누르면 챕터1로 바로 감
 var myChar = 1; //캐릭터 선택 변수
-var debuff = 0;
+var slowDebuff = false;
+var barDebuff = false;
+var fastDebuff = false;
+var reverse = false;
 
 var totalScore = 0;
 
@@ -131,8 +134,15 @@ $(document).ready(() => {
     wallDownCount = true;
     isBallsAdded = false;
     regenCount = true;
+
     isBarWider = false;
     paddleWidth = 200;
+    speed = 5;
+
+    slowDebuff = false;
+    barDebuff = false;
+    fastDebuff = false;
+    reverse = false;
 
     balls = [
       {
@@ -217,25 +227,28 @@ $(document).ready(() => {
   document.addEventListener("keydown", keyDownHandler, false);
   document.addEventListener("keyup", keyUpHandler, false);
 
-  if(localStorage.getItem("Buff1") == 'A' || localStorage.getItem("Buff2") == 'A') {
-    paddleXbyKey *= 1.2;
-  }
+  // if(localStorage.getItem("Buff1") == 'A' || localStorage.getItem("Buff2") == 'A') {
+  //   paddleXbyKey *= 1.2;
+  // }
 
   //Mouse movement
   $(document).mousemove((e) => {
     var mouseX = e.pageX - (1920 - 1600) / 2 - paddleWidth / 2;
     if (mouseX >= 1600 - paddleWidth || mouseX <= 0) {
-    } else {
-      paddleX = mouseX;
-      if(localStorage.getItem("Buff1") == 'A' || localStorage.getItem("Buff2") == 'A'){           //Buff A finish
-        //이 부분에 패들 움직임 계산해서 넣어줘야함
+    } 
+    else {
+      // paddleX = mouseX;
+      if (slowDebuff) {
+        if (mouseX < paddleX) {
+          paddleX -= 6;
+        }
+        if (mouseX > paddleX) {
+            paddleX += 6;
+        }
       }
-      // if (mouseX < paddleX) {
-      //     paddleX -= 6;
-      // }
-      // if (mouseX > paddleX) {
-      //     paddleX += 6;
-      // } 
+      else {
+        paddleX = mouseX;
+      }
     }
   });
 
@@ -376,7 +389,42 @@ $(document).ready(() => {
       wallDownCount = false;
     }
 
-    if (bossHp <= (maxBossHp / 2) && regenCount) {
+    // Defuff 구현
+    if (chapter == 1) {
+      if (bossHp <= (maxBossHp / 2) && !slowDebuff) {
+        slowDebuff = true;
+        $("#debuffaa").css("opacity", "1");
+      }
+    }
+    if(chapter == 2) {
+      if (bossHp <= (maxBossHp / 3 * 2) && !slowDebuff) {
+        slowDebuff = true;
+        $("#debuffaa").css("opacity", "1");
+      }
+      if (bossHp <= (maxBossHp / 3) && !barDebuff) {
+        barDebuff = true;
+        paddleWidth = paddleWidth * 0.7;
+        $("#debuffbb").css("opacity", "1");
+      }
+    }
+    if(chapter == 3) {
+      if (bossHp <= (maxBossHp / 4 * 3) && !slowDebuff) {
+        slowDebuff = true;
+        $("#debuffaa").css("opacity", "1");
+      }
+      if (bossHp <= (maxBossHp / 2) && !barDebuff) {
+        barDebuff = true;
+        paddleWidth = paddleWidth * 0.7;
+        $("#debuffbb").css("opacity", "1");
+      }
+      if (bossHp <= (maxBossHp / 4) && !fastDebuff) {
+        fastDebuff = true;
+        speed = 7;
+        $("#debuffcc").css("opacity", "1");
+      }
+    }
+
+    if (bossHp <= 2 && regenCount) {
       var regenMap = [];
       if (chapter == 1) {
         regenMap = level1;
@@ -477,6 +525,7 @@ $(document).ready(() => {
     $("#again").css("display", "block");
     $("#player-hp").css("width", (746) + "px");
     $("#boss-hp").css("width", (746) + "px");
+    $("#boss-pic").attr("src", "./images/header/characters/lodumani.webp");
     $("#display-menu").show();
     $("#main_menu").show();
   });
@@ -490,6 +539,7 @@ $(document).ready(() => {
     $("#again").css("display", "block");
     $("#player-hp").css("width", (746) + "px");
     $("#boss-hp").css("width", (746) + "px");
+    $("#boss-pic").attr("src", "./images/header/characters/lodumani.webp");
     GameBuff();
   })
 
@@ -502,6 +552,7 @@ $(document).ready(() => {
     $("#again").css("display", "block");
     $("#player-hp").css("width", (746) + "px");
     $("#boss-hp").css("width", (746) + "px");
+    $("#boss-pic").attr("src", "./images/header/characters/lodumani.webp");
     chapter++;
     toggleChapter(chapter);
   })
@@ -1816,7 +1867,6 @@ $(document).ready(() => {
     $("#again").prop("disabled", true);
     $("#again").css("display", "none");
     $("#start").css("opacity", "0.5");
-    console.log(123)
   })
   
   $("#start").click(() => {
@@ -1832,6 +1882,10 @@ $(document).ready(() => {
     Plusball.style.opacity = 0.5;
     Powerball.style.opacity = 0.5;
     Ballspace.style.opacity = 0.5;
+    $("#debuffaa").css("opacity", "0.5");
+    $("#debuffbb").css("opacity", "0.5");
+    $("#debuffcc").css("opacity", "0.5");
+    $("#debuffdd").css("opacity", "0.5");
     initGame();
   })
 });
