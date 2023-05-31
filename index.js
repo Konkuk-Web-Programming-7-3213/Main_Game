@@ -1826,7 +1826,7 @@ $(document).ready(() => {
               $("#display-main").hide();
               $("#gameOver").hide();
               $("#clear").hide();
-              $("#credit").hide();
+              $("#credit").show();
             });
           });
         }
@@ -1845,7 +1845,7 @@ $(document).ready(() => {
         $("#display-main").hide();
         $("#gameOver").hide();
         $("#clear").hide();
-        $("#credit").hide();
+        $("#credit").show();
         return 1;
       }
     });
