@@ -1686,6 +1686,7 @@ $(document).ready(() => {
   function Chapter4() {
     disableMenuButtons();
     $("#screen").empty();
+    $("#sboss").hide();
     $("#chapter4").show();
     document.body.style.backgroundImage = "url('./images/story/black.jpg')";
     document.querySelector(".screen").style.display = "block";
@@ -1706,6 +1707,7 @@ $(document).ready(() => {
   
     // Add a new event listener
     $("#next-buttons").on("click", function () {
+      $("#sboss").show();
       document.querySelector(".screen").style.display = "none";
       document.getElementById("sboss").style.display = "block";
   
