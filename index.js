@@ -238,12 +238,17 @@ $(document).ready(() => {
     } 
     else {
       // paddleX = mouseX;
-      if (slowDebuff) {
-        if (mouseX < paddleX) {
-          paddleX -= 6;
+      if (slowDebuff || reverse) {
+        if (slowDebuff) {
+          if (mouseX < paddleX) {
+            paddleX -= 6;
+          }
+          if (mouseX > paddleX) {
+              paddleX += 6;
+          }
         }
-        if (mouseX > paddleX) {
-            paddleX += 6;
+        if (reverse) {
+          paddleX = 1600 - paddleWidth - mouseX;
         }
       }
       else {
@@ -423,6 +428,26 @@ $(document).ready(() => {
         $("#debuffcc").css("opacity", "1");
       }
     }
+    if(chapter == 4) {
+      if (bossHp <= (maxBossHp / 5 * 4) && !slowDebuff) {
+        slowDebuff = true;
+        $("#debuffaa").css("opacity", "1");
+      }
+      if (bossHp <= (maxBossHp / 5 * 3) && !barDebuff) {
+        barDebuff = true;
+        paddleWidth = paddleWidth * 0.7;
+        $("#debuffbb").css("opacity", "1");
+      }
+      if (bossHp <= (maxBossHp / 5 * 2) && !fastDebuff) {
+        fastDebuff = true;
+        speed = 7;
+        $("#debuffcc").css("opacity", "1");
+      }
+      if (bossHp <= (maxBossHp / 5 * 1) && !fastDebuff) {
+        reverse = true;
+        $("#debuffdd").css("opacity", "1");
+      }
+    }
 
     if (bossHp <= 2 && regenCount) {
       var regenMap = [];
@@ -471,16 +496,9 @@ $(document).ready(() => {
           balls[i].dx = Math.abs(speed * Math.cos(angle * Math.PI / 180)); // 방향을 반대로 변경하고 절대값으로 만듦
       } else if (balls[i].y + balls[i].dy > canvas.height - ballRadious - paddleHeight) {
           if (balls[i].x > paddleX - ballRadious && balls[i].x < paddleX + paddleWidth + ballRadious) {
-              //법선 벡터 계산 - 패들 충돌 위치에 따라 공의 반사각 변경
-              var distance = balls[i].x - (paddleX + paddleWidth / 2);
-  
-              var maxReflectionAngle = 60;
-  
-              var reflectionAngle =
-                (distance / (paddleWidth / 2)) * (Math.PI / 180) * maxReflectionAngle;
-  
-              balls[i].dx = speed * Math.sin(reflectionAngle);
-              balls[i].dy = -speed * Math.cos(reflectionAngle);
+              if (balls[i].dy > 0) { // 공이 아래 방향에서 패들과 충돌했을 때만 방향을 반대로 변경
+                  balls[i].dy = -Math.abs(speed * Math.sin(angle * Math.PI / 180)); // 방향을 반대로 변경하고 절대값으로 만듦
+              }
           } else {
               // alert("GAME OVER");
               // document.location.reload();
