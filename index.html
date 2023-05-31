@@ -4,71 +4,374 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="short icon" href="#">
   <title>7조</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Sunflower:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
   <script src="index.js"></script>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body style="overflow-y: hidden; overflow-x: hidden">
-  <header>
-    <div id="boss">
-      <div class="boss-circle"></div>
-      <div class="boss-circle"></div>
-      <img src="./images/header/characters/lodumani.webp" id="boss-pic" />
-      <div id="boss-hp"></div>
+  <!-- main menu HTML -->
+  <div id="display-menu">
+    <audio id="musicPlayer" >
+      <source src="./audios/Log_in.mp3">
+    </audio>
+    <audio id="clickMusic">
+      <source src="./audios/click.mp3">
+    </audio>
+    <audio id="hoverMusic">
+      <source src="./audios/hover.mp3">
+    </audio>
+    <audio id="water">
+      <source src="./audios/water.mp3">
+    </audio>
+    <div id="loading">Loading</div>
+    <div id="pressAnyButton">
+      <img class="firstImg" src="./images/menu/titleback.jpg" />
+      <div class="title">Crazy Bouncing Ball</div>
+      <div id="press_Button" class="blinking">PRESS BUTTON</div>
     </div>
-    <div id="vs-cover">
-      <img src="./images/header/vs.webp" id="vs" />
+    <div id="main_menu">
+      <img class="firstImg" src="./images/menu/titleback.jpg" />
+      <div class="title">Crazy Bouncing Ball</div>
+      <div id="select">
+        <button class="btn" id="menu1"><span>Start Game</span></button><br />
+        <button class="btn" id="menu2"><span>Options</span></button><br />
+        <button class="btn" id="menu3"><span>Credit</span></button><br />
+        <button class="btn" id="menu4"><span>Quit Game</span></button>
+      </div>
     </div>
-    <div id="player">
-      <div class="player-circle"></div>
-      <div class="player-circle"></div>
-      <img src="./images/header/characters/dao.webp" id="player-pic" />
-      <div id="player-hp"></div>
+    <div id="startGame">
+      <img class="firstImg" src="./images/menu/titleback2.jpg" />
+      <div id="startMenu">START MENU</div>
+      <div class="cover">
+        <div id="menuSelect">
+          <h2 class="select" id="gameStart">&nbsp;■ 게임 스타트</h2>
+          <h2 class="select" id="chapter">&nbsp;■ 챕터 선택</h2>
+          <h2 class="select" id="option">&nbsp;■ 옵션</h2>
+        </div>
+      </div>
+      <div class="introduce"></div>
     </div>
-  </header>
-  <div id="header-nav"></div>
-  <section>
-    <canvas id="myCanvas" width="1600" height="900"></canvas>
-  </section>
-  <img src="" id="field" />
-  <div id="boss-block">
-    <img src="./images/header/characters/boss1.png"/>
+    <div id="selectChapter">
+      <img class="firstImg" src="./images/menu/titleback2.jpg" />
+      <div id="chapterSelect">CHAPTER SELECT</div>
+      <div class="cover2">
+        <div id="chSelect">
+          <h2 class="select" id="ch1">&nbsp;■ Ch.01 : 프롤로그</h2>
+          <h2 class="select" id="ch2">&nbsp;■ Ch.02 : 마을로</h2>
+          <h2 class="select" id="ch3">&nbsp;■ Ch.03 : 보물을 찾아라</h2>
+          <h2 class="select" id="ch4">&nbsp;■ Ch.04 : 보물을 지켜라</h2>
+        </div>
+      </div>
+      <div id="preImg">
+        <div id="ch">제목</div>
+        <div id="imgIn"><img id="imgSelect" /></div>
+        <div id="text"></div>
+      </div>
+      <div class="introduce"></div>
+    </div>
+    <div class="character">
+      <img class="firstImg" src="./images/menu/붐힐마을.jpg" />
+      <div id="selectCharacter">CHARACTER SELECT</div>
+      <div id="firstsectionphoto">
+        <img id="photo1" src="./images/characters/PIC/Bazzi_pic.jpeg" alt="character" />
+        <img id="photo2" src="./images/characters/PIC/Dao_pic.jpeg" alt="character" />
+        <img id="photo3" src="./images/characters/PIC/Diz_pic.jpeg" alt="character" />
+      </div>
+      <img id="choosenchar" src="./images/characters/GIFs/p1.gif" />
+      <div id="charIntro">
+        <div id="charName"></div>
+        <div id="charText"></div>
+      </div>
+      <div id="startButton">GAME START</div>
+    </div>
+    <div id="musicSel">
+      <div id="musicAlt">
+        <h2 id="qMusicOn">음악이 자동으로 켜집니다.</h2>
+        <div id="yes">확 인</div>
+      </div>
+    </div>
+    <div id="konkuk">
+      <img src="./images/menu/logo.jpg" />
+    </div>
+    <div id="department">
+      <h2>컴퓨터공학부</h2>
+      <h5>Computer Science and Engineering</h5>
+    </div>
+    <div id="options">
+      <img class="firstImg" src="./images/menu/삼남매.jpg" />
+      <div id="optionselect">OPTIONS SELECT</div>
+      <div class="cover2">
+        <h2 class="select" id="bgm">&nbsp;■ BGM SOUND</h2>
+        <h2 class="select" id="clickS">&nbsp;■ CLICK SOUND</h2>
+        <h2 class="select" id="hoverS">&nbsp;■ HOVER SOUND</h2>
+        <h2 class="select" id="difficulty">&nbsp;■ DIFFICUlTY</h2>
+      </div>
+      <div id="cover3">
+        <h2 class="sControl">
+          <input
+            type="range"
+            id="bar1"
+            min="0"
+            max="1"
+            step="0.1"
+            value="0.2"
+          />
+        </h2>
+        <h2 class="sControl">
+          <input
+            type="range"
+            id="bar2"
+            min="0"
+            max="1"
+            step="0.1"
+            value="0.2"
+          />
+        </h2>
+        <h2 class="sControl">
+          <input
+            type="range"
+            id="bar3"
+            min="0"
+            max="1"
+            step="0.1"
+            value="0.2"
+          />
+        </h2>
+        <h2 class="sControl">
+          <select id="difficulty-value">
+            <option value="1">EASY</option>
+            <option value="2">MEDIUM</option>
+            <option value="3">HARD</option>
+          </select>
+        </h2>
+      </div>
+      <div class="introduce"></div>
+    </div>
   </div>
-  <div id="container">
-    <div id="debuff">
-      <p id="debuff-top">Debuffs</p>
-      <div class="buffs">
-        <img src="./images/buffs/slowbar.png" />
-        <p>바 속도 Down</p>
+  <div id="credit">
+		<div id="logoKonkuk"><img src="./images/건국대학교 로고.gif"></div>
+		<div id="department">COMPUTER SCIENCE & ENGINEERING</div>
+		<div id="creditIntro">
+			<h1>WEB PROJECT GROUP 7</h1>
+			<hr>
+			<h3>팀장 : 김형언</h3>
+			<hr>
+			<h3>인게임 기능 구현 및 디자인 : 이동훈</h3>
+			<hr>
+			<h3>버프 구현 및 디자인 : 성은우 </h3>
+			<hr>
+			<h3>스토리 창 및 디자인: 하디</h3>
+			<hr>
+			<h3>시나리오, 초기화면 및 디자인 : 신홍규  </h3>
+			<hr>
+		</div>
+	</div>
+  <!-- story HTML -->
+  <div id="display-story">
+    <!-- <div class="menu">
+      <button onclick="toggleChapter(1)">Chapter 1</button>
+      <button onclick="toggleChapter(2)">Chapter 2</button>
+      <button onclick="toggleChapter(3)">Chapter 3</button>
+      <button onclick="toggleChapter(4)">Chapter 4</button>
+      <button onclick="toggleChapter(5)">Chapter 5</button>
+    </div> -->
+    <div id="chapter1" class="chapter">
+      <div class="characterz character-left">
+        <img id="Dao_icon" src="./images/characters/icons/Dao_icon.png" alt="Character 1">
       </div>
-      <div class="buffs">
-        <img src="./images/buffs/smallbar.png" />
-        <p>바 크기 Down</p>
+      <div class="characterz character-right">
+        <img id="Lodumani_icon" src="./images/characters/icons/Lodumani_icon.png">
+        <img id="Buha_icon" src="./images/characters/icons/Buha_icon.png" />
       </div>
-      <div class="buffs">
-        <img src="./images/buffs/reverse.png" />
-        <p>Reverse</p>
-      </div>
-      <div class="buffs">
-        <img src="./images/buffs/fasterball.png" />
-        <p>공 속도 UP</p>
+      <div class="dialogue-box">
+        <img src="./images/story/textbox.png" alt="Dialogue Box">
+        <div class="dialogue-text">
+          <p id="dialogue-text"></p>
+        </div>
+        <button class="next-button" id="next-button">Next</button>
       </div>
     </div>
-    <div id="buff">
-      <p id="buff-top">Buffs</p>
-      <div class="buffs">
-        <img src="./images/buffs/moreballs.png" />
-        <p>공 개수 UP</p>
+    <div id="chapter2" class="chapter">
+      <div class="characterz character-left">
+        <img id="Dao_icon2" src="./images/characters/icons/Dao_icon.png">
+        <img id="Bazzi_icon2" src="./images/characters/icons/Bazzi_icon.png">
+        <img id="Diz_icon2" src="./images/characters/icons/Diz_icon.png">
       </div>
-      <div class="buffs">
-        <img src="./images/buffs/widerbar.png" />
-        <p>바 크기 UP</p>
+      <div class="characterz character-right">
+        <img id="Buha_icon2" src="./images/characters/icons/Buha_icon.png">
+        <img id="Mobi_icon2" src="./images/characters/icons/Mobi_icon.png">
+        <img id="Bazzi_icon22" src="./images/characters/icons/Bazzi_icon.png">
       </div>
-      <div class="buffs">
-        <img src="./images/buffs/strongerballs.png" />
-        <p>공 데미지 UP</p>
+      <div class="dialogue-box">
+        <img src="./images/story/textbox.png" alt="Dialogue Box">
+        <div class="dialogue-text2">
+          <p id="dialogue-text2"></p>
+        </div>
+        <button class="next-button" id="next-button2">Next</button>
       </div>
+    </div>
+    <div id="chapter3" class="chapter">
+      <div class="black-screen">
+        <p id="black-screen"></p>
+        <button class="next-button" id="next-buttonb">Next</button>
+      </div>
+      <div class="characterz character-left">
+        <img id="Dao_icon3" src="./images/characters/icons/Dao_icon.png">
+        <img id="Bazzi_icon3" src="./images/characters/icons/Bazzi_icon.png">
+      </div>
+      <div class="characterz character-right">
+        <img id="Toto_icon3" src="./images/characters/icons/Toto_icon.png">
+        <img id="Diz_icon3" src="./images/characters/icons/Diz_icon.png">
+        <img id="Mobi_icon3" src="./images/characters/icons/Mobi_icon.png">
+      </div>
+      <div class="dialogue-box">
+        <img src="./images/story/textbox.png" alt="Dialogue Box">
+        <div class="dialogue-text3">
+          <p id="dialogue-text3"></p>
+        </div>
+        <button class="next-button" id="next-button3">Next</button>
+      </div>
+    </div>
+    <div id="chapter4" class="chapter">
+      <div class="screen">
+        <p id="screen"></p>
+      </div>
+      <video id="sboss">
+        <source src="./audios/boss.mp4" type="video/mp4">
+      </video>
+      <button class="next-button" id="next-buttons">Next</button>
+      <img id="Lodumani_boss" src="./images/characters/icons/Lodumani_icon.png">
+    </div>
+    <div id="chapter5" class="chapter">
+      <div class="black-screen5">
+        <p id="black-screen5"></p>
+        <button class="next-button" id="next-buttonb5">Next</button>
+      </div>
+      <div class="characterz character-left">
+        <img id="Dao_icon5" src="./images/characters/icons/Dao_icon.png">
+        <img id="Diz_icon5" src="./images/characters/icons/Diz_icon.png">
+      </div>
+      <div class="characterz character-right">
+        <img id="Lodumani_icon5" src="./images/characters/icons/Lodumani_icon.png">
+        <img id="Bazzi_icon5" src="./images/characters/icons/Bazzi_icon.png">
+      </div>
+      <div class="dialogue-box">
+        <img src="./images/story/textbox.png" alt="Dialogue Box">
+        <div class="dialogue-text5">
+          <p id="dialogue-text5"></p>
+        </div>
+        <button class="next-button" id="next-button5">Next</button>
+      </div>
+    </div>
+  </div>
+  <!-- main game HTML -->
+  <div id="display-main">
+    <header>
+      <div id="boss">
+        <div class="boss-circle"></div>
+        <div class="boss-circle"></div>
+        <img src="./images/header/characters/lodumani.webp" id="boss-pic" />
+        <div id="boss-hp"></div>
+      </div>
+      <div id="vs-cover">
+        <img src="./images/header/vs.webp" id="vs" />
+      </div>
+      <div id="player">
+        <div class="player-circle" id="asd"></div>
+        <div class="player-circle" id="asdf"></div>
+        <img src="./images/header/characters/dao.webp" id="player-pic" />
+        <div id="player-hp"></div>
+      </div>
+    </header>
+    <div id="header-nav"></div>
+    <section>
+      <canvas id="myCanvas" width="1600" height="900"></canvas>
+    </section>
+    <img src="" id="field" />
+    <div id="boss-block">
+      <img src="./images/header/characters/boss1.png"/>
+    </div>
+    <div id="container">
+      <div id="debuff">
+        <p id="debuff-top">Debuffs</p>
+        <div class="buffs">
+          <img src="./images/buffs/slowbar.png" />
+          <p>바 속도 Down</p>
+        </div>
+        <div class="buffs">
+          <img src="./images/buffs/smallbar.png" />
+          <p>바 크기 Down</p>
+        </div>
+        <div class="buffs">
+          <img src="./images/buffs/reverse.png" />
+          <p>Reverse</p>
+        </div>
+        <div class="buffs">
+          <img src="./images/buffs/fasterball.png" />
+          <p>공 속도 UP</p>
+        </div>
+      </div>
+      <div id="buff">
+        <p id="buff-top">Buffs</p>
+        <div class = "buffs" id = "buffaa">
+          <img src="./images/buffs/widerbar.png" />
+          <p>바 크기 UP</p>
+        </div>
+        <div class = "buffs" id = "buffbb">
+          <img src="./images/buffs/moreballs.png" />
+          <p id = "buff2">공 개수 UP</p>
+        </div>
+        <div class="buffs" id = "buffcc">
+          <img src="./images/buffs/strongerballs.png" />
+          <p id = "buff3">공 데미지 UP</p>
+        </div>
+        <div class="buffs" id = "buffdd">
+          <img src="./images/buffs/multi.png" />
+          <p id = "buff4">공 범위 데미지</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="gameOver">
+		<div id="gameOverTitle">GAME OVER</div>
+		<div class="scoreView"></div>
+		<div id="toMain">메인메뉴로</div>
+		<div class="retry">다시하기</div>
+	</div>
+	<div id="clear">
+		<div id="clearTitle">Clear</div>
+		<div class="scoreView"></div>
+		<div id="nextStep">다음 스테이지로</div>
+		<div class="retry">다시하기</div>
+	</div>
+  <!-- buff HTML -->
+  <div id="display-buff">
+    <h1>버프 선택창</h1>
+    <div class="container">
+      <button id="again"></button>
+      <div class="box">
+        <p id="text1"></p>
+        <div class="buffImageContainer">
+          <img id="image1" />
+        </div>
+      </div>
+      <div class="box">
+        <p id="text2"></p>
+        <div class="buffImageContainer">
+          <img id="image2" />
+        </div>
+      </div>
+      <div class="box">
+        <p id="text3"></p>
+        <div class="buffImageContainer">
+          <img id="image3" />
+        </div>
+      </div>
+      <button id="start"></button>
     </div>
   </div>
 </body>
